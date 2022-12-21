@@ -167,6 +167,15 @@ public class BranchDeepLinks: CAPPlugin {
         }
     }
 
+    @objc func setRequestMetadata(_ call: CAPPluginCall) {
+        let metadataKey = call.getString("metadataKey") ?? ""
+        let metadataValue = call.getString("metadataValue") ?? ""
+
+        Branch.getInstance().setRequestMetadataKey(metadataKey, value: metadataValue)
+
+        call.resolve()
+    }
+
     @objc func setIdentity(_ call: CAPPluginCall) {
         let newIdentity = call.getString("newIdentity") ?? ""
         branchService.setIdentity(newIdentity: newIdentity) { (referringParams, error) in

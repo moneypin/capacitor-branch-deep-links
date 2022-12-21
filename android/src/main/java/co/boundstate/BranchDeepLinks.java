@@ -274,6 +274,16 @@ public class BranchDeepLinks extends Plugin {
     }
 
     @PluginMethod
+    public void setRequestMetadata(final PluginCall call) {
+        String metadataKey = call.getString("metadataKey");
+        String metadataValue = call.getString("metadataValue");
+
+        Branch.getInstance().setRequestMetadata(metadataKey, metadataValue);
+
+        call.resolve();
+    }
+
+    @PluginMethod
     public void logout(final PluginCall call) {
         Branch
             .getInstance()
